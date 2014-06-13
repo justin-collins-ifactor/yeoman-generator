@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	
+	<!-- build:css css/vendor.css-->
+	<!-- bower:css -->
+	<!-- endbower -->
+	<!-- endbuild -->
+
+	<!-- build:css css/main.css -->
+	<link rel="stylesheet" href="css/main.css" />
+	<!-- endbuild -->
+</head>
+
+<body ng-app="<%= appname %>">
+<div id="container">
+	<header></header>
+	<div ng-view></div>
+	<footer></footer>
+</div>
+<!-- build:js js/vendor.js -->
+<!-- bower:js -->
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js js/main.js -->
+<script src="js/main.js"></script>
+<script src="js/controllers/home.js"></script>
+<!-- endbuild -->
+</body>
+</html>

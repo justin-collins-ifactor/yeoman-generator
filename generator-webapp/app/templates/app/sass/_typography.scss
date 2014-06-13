@@ -1,0 +1,32 @@
+////////////////////////////////////////////////////////////
+//		[@FONT-FACE]
+////////////////////////////////////////////////////////////
+@mixin font-face($fontFamily, $fileName, $fontStyle, $fontWeight) {
+	@font-face {
+		font-family: $fontFamily;
+		src: url('../assets/fonts/#{$fileName}.eot');
+		src: url('../assets/fonts/#{$fileName}.eot?#iefix') format('embedded-opentype'),
+			url('../assets/fonts/#{$fileName}.woff') format('woff'),
+			url('../assets/fonts/#{$fileName}.ttf') format('truetype');
+		font-style: $fontStyle;
+		font-weight: $fontWeight;
+	}
+}
+
+@mixin textFormat($size:$fontSize, $lineHeight:$fontSize+3, $color:$colorBase, $family:null, $weight:null, $transform:null){
+	font-size:$size;
+	line-height:$lineHeight;
+	color:$color;
+
+	@if $family != null {font-family:$family;}
+	@if $weight != null {font-weight:$weight;}
+	@if $transform != null {text-transform:$transform;}
+}
+
+//--------------------------------------------------
+//	Cabin
+//--------------------------------------------------
+
+@include font-face(Cabin, 'cabin-regular', normal, normal);
+
+$cabin: Cabin, sans-serif;

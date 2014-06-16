@@ -11,7 +11,8 @@
 		"url": "https://github.com/justin-collins"
 	},
 	"engines": {
-		"node": ">=0.10.0"
+		"node": ">=0.10.0",
+		"npm": ">=1.2.10"
 	},
 	"files": [
 		"app"

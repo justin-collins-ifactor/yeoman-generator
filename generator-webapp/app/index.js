@@ -9,17 +9,18 @@ var WebappGenerator = yeoman.generators.Base.extend({
 		this.pkg = require('../package.json');
 
 		this.on('end', function () {
-			if (!this.options['skip-install']) {
-				this.installDependencies();
-			}
+			this.installDependencies({
+				skipInstall: this.options['skip-install'],
+				callback: function () {
+					this.spawnCommand('grunt', ['build']);
+				}.bind(this)
+			});
 		});
 	},
 
 	welcome: function(){
 		if (!this.options['skip-welcome-message']) {
-			this.log(
-				chalk.magenta('Custom webapp installer. \n')
-			);
+			this.log(chalk.magenta('Custom webapp installer. \n'));
 		}
 	},
 
@@ -39,7 +40,7 @@ var WebappGenerator = yeoman.generators.Base.extend({
 	},
 
 	app: function () {
-		this.directory('templates/app', 'dev');
+		this.directory('app', 'dev');
 
 		this.mkdir('dev/assets');
 		this.mkdir('dev/assets/fonts');
@@ -49,17 +50,17 @@ var WebappGenerator = yeoman.generators.Base.extend({
 	},
 
 	projectfiles: function () {
-		var join = path.join;
+		//var join = path.join;
+		//this.sourceRoot(join(__dirname, 'templates/root'));
 
-		this.sourceRoot(join(__dirname, 'templates/root'));
-		this.copy('_editorconfig', '.editorconfig');
-		this.copy('_jshintrc', '.jshintrc');
-		this.copy('_gitignore', '.gitignore');
-		this.copy('_bowerrc', '.bowerrc');
+		this.copy('root/_editorconfig', '.editorconfig');
+		this.copy('root/_jshintrc', '.jshintrc');
+		this.copy('root/_gitignore', '.gitignore');
+		this.copy('root/_bowerrc', '.bowerrc');
 
-		this.template('_bower.json', 'bower.json');
-		this.template('_package.json', 'package.json');
-		this.template('_Gruntfile.js', 'Gruntfile.js');
+		this.template('root/_bower.json', 'bower.json');
+		this.template('root/_package.json', 'package.json');
+		this.copy('root/_Gruntfile.js', 'Gruntfile.js');
 	}
 });
 

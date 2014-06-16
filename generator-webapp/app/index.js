@@ -3,6 +3,7 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
+var yosay = require('yosay');
 
 var WebappGenerator = yeoman.generators.Base.extend({
 	init: function () {
@@ -20,6 +21,7 @@ var WebappGenerator = yeoman.generators.Base.extend({
 
 	welcome: function(){
 		if (!this.options['skip-welcome-message']) {
+			this.log(yosay());
 			this.log(chalk.magenta('Custom webapp installer. \n'));
 		}
 	},

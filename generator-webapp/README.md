@@ -1,47 +1,49 @@
-# generator-webapp [![Build Status](https://secure.travis-ci.org/justin-collins/generator-webapp.png?branch=master)](https://travis-ci.org/justin-collins/generator-webapp)
+# Angular webapp environment setup
 
 > [Yeoman](http://yeoman.io) generator
 
 
 ## Getting Started
 
-### What is Yeoman?
+1. Install [Node](http://nodejs.org/download/)
 
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
+2. Install SASS & Friends (MAC users can skip to step 2)
+  1. Install [Ruby](http://www.rubyinstaller.org/downloads/)
+  2. Install Sass
+  ```bash
+  gem install sass
+  ```
+  3. Install Compass
+  ```bash
+  gem install compass
+  ```
+3. Install Yeoman
 ```bash
-$ npm install -g yo
+npm install -g yo
 ```
 
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-webapp from npm, run:
-
+4. Download webapp generator somewhere out of the way
 ```bash
-$ npm install -g generator-webapp
+git clone git@github.com:justin-collins/yeoman-generator.git
 ```
 
-Finally, initiate the generator:
-
+5. Navigate to the generator-webapp folder within the repo. And link it.
 ```bash
-$ yo webapp
+npm link
 ```
 
-### Getting To Know Yeoman
+6. Navigate to the development directory
+```bash
+yo webapp
+```
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+## Options
+These options can be applied to the Yeoman generator.
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+### Skip Dependency installation
+--skip-install
 
-
-## License
-
-MIT
+For Example:
+```bash
+yo webapp --skip-installation
+```

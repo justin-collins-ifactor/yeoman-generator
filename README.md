@@ -17,25 +17,26 @@
   ```bash
   gem install compass
   ```
+
 3. Install Yeoman
-```bash
-npm install -g yo
-```
+  ```bash
+  npm install -g yo
+  ```
 
 4. Download webapp generator somewhere out of the way
-```bash
-git clone git@github.com:justin-collins/yeoman-generator.git
-```
+  ```bash
+  git clone git@github.com:justin-collins/yeoman-generator.git
+  ```
 
 5. Navigate to the generator-webapp folder within the repo. And link it.
-```bash
-npm link
-```
+  ```bash
+  npm link
+  ```
 
 6. Navigate to the development directory
-```bash
-yo webapp
-```
+  ```bash
+  yo webapp
+  ```
 
 ## Options
 These options can be applied to the Yeoman generator.
@@ -44,6 +45,6 @@ These options can be applied to the Yeoman generator.
 --skip-install
 
 For Example:
-```bash
-yo webapp --skip-installation
-```
+  ```bash
+  yo webapp --skip-install
+  ```

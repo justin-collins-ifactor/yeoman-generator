@@ -7,7 +7,7 @@
 
 1. Install [Node](http://nodejs.org/download/)
 
-2. Install SASS & Friends (MAC users can skip to step 2)
+2. Install SASS & Friends (MAC users can skip to step 3)
   1. Install [Ruby](http://www.rubyinstaller.org/downloads/)
   2. Install Sass
   ```bash

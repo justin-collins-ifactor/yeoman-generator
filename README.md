@@ -10,13 +10,13 @@
 2. Install SASS & Friends (MAC users can skip to step ii)
   1. Install [Ruby](http://www.rubyinstaller.org/downloads/)
   2. Install Sass
-  ```bash
-  gem install sass
-  ```
+    ```bash
+    gem install sass
+    ```
   3. Install Compass
-  ```bash
-  gem install compass
-  ```
+    ```bash
+    gem install compass
+    ```
 
 3. Install Yeoman
   ```bash
@@ -38,7 +38,7 @@
   yo webapp
   ```
 
-## Options
+## Installation Options
 These options can be applied to the Yeoman generator.
 
 ### Skip Dependency installation
@@ -47,4 +47,31 @@ These options can be applied to the Yeoman generator.
 For Example:
   ```bash
   yo webapp --skip-install
+  ```
+
+## Grunt Options
+These options can be used with the grunt process.
+
+### Update dev files
+test
+
+For Example:
+  ```bash
+  grunt test
+  ```
+
+### Update prod files
+build
+
+For Example:
+  ```bash
+  grunt build
+  ```
+
+### Start a connect web server
+serve
+
+For Example:
+  ```bash
+  grunt serve
   ```

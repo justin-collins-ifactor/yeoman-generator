@@ -1,5 +1,7 @@
-@import "compass";
 @import "resets";
+@import "../../bower_components/bourbon/dist/bourbon";
+@import "../../bower_components/neat/app/assets/stylesheets/neat";
+@import "mixins";
 @import "variables";
 @import "typography";
 

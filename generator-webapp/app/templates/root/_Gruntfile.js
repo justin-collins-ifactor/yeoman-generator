@@ -29,9 +29,9 @@ module.exports = function (grunt) {
 					livereload: '<%= connect.options.livereload %>'
 				}
 			},
-			compass: {
+			sass: {
 				files: ['<%= yeoman.dev %>/sass/{,*/}*.{scss,sass}'],
-				tasks: ['compass']
+				tasks: ['sass']
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
@@ -111,7 +111,7 @@ module.exports = function (grunt) {
 					]
 				}]
 			},
-      		server: '.tmp'
+			server: '.tmp'
 		},
 
 		// Automatically inject Bower components into the app
@@ -119,6 +119,7 @@ module.exports = function (grunt) {
 			dev: {
 				src: ['<%= yeoman.dev %>/index.html'],
 				ignorePath: new RegExp('^<%= yeoman.dev %>/|../'),
+				exclude: ['bower_components/modernizr/modernizr.js'],
 				fileTypes: {
 					html: {
 						replace: {
@@ -126,22 +127,19 @@ module.exports = function (grunt) {
 							css: '<link rel="stylesheet" href="../{{filePath}}" />'
 						}
 					}
-				},
+				}
 			}
 		},
 
 		// Compiles Sass to CSS and generates necessary files if requested
-		compass: {
+		sass: {
 			prod:{
-				options: {
-					sassDir: '<%= yeoman.dev %>/sass',
-					cssDir: '<%= yeoman.dev %>/css',
-					raw: 'Sass::Script::Number.precision = 10\n'
-				}
-			},
-			server: {
-				options: {
-					debugInfo: true
+				options:{
+					outputStyle: 'compressed',
+	                sourceComments: 'none'
+				},
+				files: {
+					'<%= yeoman.dev %>/css/main.css' : '<%= yeoman.dev %>/sass/main.scss'
 				}
 			}
 		},
@@ -175,12 +173,12 @@ module.exports = function (grunt) {
 			}
 		},
  
-        uglify: {
-            options: {
-                report: 'min',
-                mangle: false
-            }
-        },
+		uglify: {
+			options: {
+				report: 'min',
+				mangle: false
+			}
+		},
 
 		imagemin: {
 			prod: {
@@ -216,7 +214,7 @@ module.exports = function (grunt) {
 				files: [{
 					expand: true,
 					cwd: '<%= yeoman.prod %>',
-					src: ['*.html', 'templates/{,*/}*.html'],
+					src: ['*.html'],
 					dest: '<%= yeoman.prod %>'
 				}]
 			}
@@ -235,6 +233,23 @@ module.exports = function (grunt) {
 				}]
 			}
 		},
+
+        //compiles angular templates into a single file
+        ngtemplates: {
+            app: {
+                cwd: '<%= yeoman.dev %>',
+                src: 'templates/**.html',
+                dest: '<%= yeoman.dev %>/js/templates.js',
+                options: {
+                    module:'<%= appname %>',
+                    htmlmin: {
+                        collapseWhitespace: true,
+                        collapseBooleanAttributes: true,
+                        removeCommentsFromCDATA: true
+                    }
+                }
+            }
+        },
 
 		// Copies remaining files to places other tasks can use
 		copy: {
@@ -264,13 +279,13 @@ module.exports = function (grunt) {
 		// Run some tasks in parallel to speed up the build process
 		concurrent: {
 			server: [
-				'compass:server'
+				'sass'
 			],
 			test: [
-				'compass'
+				'sass'
 			],
 			prod: [
-				'compass',
+				'sass',
 				'imagemin',
 				'svgmin'
 			]
@@ -284,6 +299,7 @@ module.exports = function (grunt) {
 
 		grunt.task.run([
 			'clean:server',
+            'ngtemplates',
 			'wiredep',
 			'concurrent:server',
 			'connect:livereload',
@@ -292,26 +308,28 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerTask('test', [
-	    'clean:server',
-	    'wiredep',
+		'clean:server',
+        'ngtemplates',
+		'wiredep',
 		'concurrent:test',
-	    'clean:server',
+		'clean:server',
 	]);
 
 	grunt.registerTask('build', [
 		'clean:prod',
 		'wiredep',
-		'compass',
+		'sass',
 		'useminPrepare',
 		'concurrent:prod',
 		'concat',
 		'ngmin',
+        'ngtemplates',
 		'copy',
 		'cssmin',
 		'uglify',
 		'usemin',
 		'htmlmin',
-    	'clean:server'
+		'clean:server'
 	]);
 
 	grunt.registerTask('default', [

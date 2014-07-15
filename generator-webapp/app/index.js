@@ -62,7 +62,12 @@ var WebappGenerator = yeoman.generators.Base.extend({
 
 		this.template('root/_bower.json', 'bower.json');
 		this.template('root/_package.json', 'package.json');
-		this.copy('root/_Gruntfile.js', 'Gruntfile.js');
+		//this.copy('root/_Gruntfile.js', 'Gruntfile.js');
+
+		//similar to template, but replaces only the appname
+		var indexFile = this.readFileAsString(__dirname+'/templates/root/_Gruntfile.js');
+		indexFile = indexFile.replace('<%= appname %>', this.appname);
+		this.write('Gruntfile.js',indexFile);
 	}
 });
 

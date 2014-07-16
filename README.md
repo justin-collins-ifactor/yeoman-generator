@@ -41,7 +41,7 @@ For Example:
 ## Grunt Options
 These options can be used with the grunt process.
 
-### Update dev files
+### Update dev files & run Unit Tests
 test
 
 For Example:

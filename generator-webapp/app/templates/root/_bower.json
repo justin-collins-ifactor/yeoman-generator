@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "bourbon": "~3.2.1",
-    "neat": "~1.5.1"
+    "neat": "~1.5.1",
+    "angular-mocks": "~1.2.20"
   },
   "appPath": "dev"
 }

@@ -29,6 +29,10 @@ module.exports = function (grunt) {
 					livereload: '<%= connect.options.livereload %>'
 				}
 			},
+			jsTest: {
+				files: ['test/spec/{,*/}*.js'],
+				tasks: ['newer:jshint:test', 'karma']
+			},
 			sass: {
 				files: ['<%= yeoman.dev %>/sass/{,*/}*.{scss,sass}'],
 				tasks: ['sass']
@@ -289,6 +293,14 @@ module.exports = function (grunt) {
 				'imagemin',
 				'svgmin'
 			]
+		},
+
+		// Test settings
+		karma: {
+			unit: {
+				configFile: 'test/karma.conf.js',
+				singleRun: true
+			}
 		}
 	});
 
@@ -299,7 +311,7 @@ module.exports = function (grunt) {
 
 		grunt.task.run([
 			'clean:server',
-            'ngtemplates',
+			'ngtemplates',
 			'wiredep',
 			'concurrent:server',
 			'connect:livereload',
@@ -309,10 +321,11 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('test', [
 		'clean:server',
-        'ngtemplates',
+		'ngtemplates',
 		'wiredep',
 		'concurrent:test',
 		'clean:server',
+		'karma'
 	]);
 
 	grunt.registerTask('build', [
@@ -323,7 +336,7 @@ module.exports = function (grunt) {
 		'concurrent:prod',
 		'concat',
 		'ngmin',
-        'ngtemplates',
+		'ngtemplates',
 		'copy',
 		'cssmin',
 		'uglify',
@@ -334,6 +347,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', [
 		'newer:jshint',
+		'test',
 		'build'
 	]);
 };

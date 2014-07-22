@@ -19,11 +19,11 @@
 
 4. Navigate to the generator-webapp folder within the repo. 
     1. Install node dependencies.
-      ```bash
+      ```
       npm install
       ```
     2. And link it.
-      ```bash
+      ```
       npm link
       ```
 

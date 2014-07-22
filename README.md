@@ -17,10 +17,15 @@
   git clone git@github.com:justin-collins/yeoman-generator.git
   ```
 
-4. Navigate to the generator-webapp folder within the repo. And link it.
-  ```bash
-  npm link
-  ```
+4. Navigate to the generator-webapp folder within the repo. 
+    1. Install node dependencies.
+      ```bash
+      npm install
+      ```
+    2. And link it.
+      ```bash
+      npm link
+      ```
 
 5. Navigate to the development directory
   ```bash

@@ -55,6 +55,7 @@ var WebappGenerator = yeoman.generators.Base.extend({
 		//var join = path.join;
 		//this.sourceRoot(join(__dirname, 'templates/root'));
 
+		this.directory('root/test', 'test');
 		this.copy('root/_editorconfig', '.editorconfig');
 		this.copy('root/_jshintrc', '.jshintrc');
 		this.copy('root/_gitignore', '.gitignore');

@@ -33,9 +33,19 @@ module.exports = function (grunt) {
 				files: ['test/spec/{,*/}*.js'],
 				tasks: ['newer:jshint:test', 'karma']
 			},
+			ngtemplates:{
+				files: ['<%= yeoman.dev %>/{,*/}*.html'],
+				tasks: ['ngtemplates'],
+				options: {
+					livereload: '<%= connect.options.livereload %>'
+				}
+			},
 			sass: {
 				files: ['<%= yeoman.dev %>/sass/{,*/}*.{scss,sass}'],
-				tasks: ['sass']
+				tasks: ['sass'],
+				options: {
+					livereload: '<%= connect.options.livereload %>'
+				}
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
@@ -45,8 +55,6 @@ module.exports = function (grunt) {
 					livereload: '<%= connect.options.livereload %>'
 				},
 				files: [
-					'<%= yeoman.dev %>/{,*/}*.html',
-					'<%= yeoman.dev %>/*.css',
 					'<%= yeoman.dev %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
 				]
 			}

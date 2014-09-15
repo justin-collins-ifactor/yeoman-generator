@@ -23,7 +23,7 @@ module.exports = function (grunt) {
 				tasks: ['wiredep']
 			},
 			js: {
-				files: ['<%= yeoman.dev %>/js/{,*/}*.js'],
+                files: ['<%= yeoman.dev %>/js/**/*.js'],
 				tasks: ['newer:jshint:all'],
 				options: {
 					livereload: '<%= connect.options.livereload %>'
@@ -34,14 +34,14 @@ module.exports = function (grunt) {
 				tasks: ['newer:jshint:test', 'karma']
 			},
 			ngtemplates:{
-				files: ['<%= yeoman.dev %>/{,*/}*.html'],
+                files: ['<%= yeoman.dev %>/templates/**/*.html'],
 				tasks: ['ngtemplates'],
 				options: {
 					livereload: '<%= connect.options.livereload %>'
 				}
 			},
 			sass: {
-				files: ['<%= yeoman.dev %>/sass/{,*/}*.{scss,sass}'],
+                files: ['<%= yeoman.dev %>/sass/**/*.{scss,sass}'],
 				tasks: ['sass'],
 				options: {
 					livereload: '<%= connect.options.livereload %>'
@@ -55,6 +55,7 @@ module.exports = function (grunt) {
 					livereload: '<%= connect.options.livereload %>'
 				},
 				files: [
+                    '<%= yeoman.dev %>/index.html',
 					'<%= yeoman.dev %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
 				]
 			}
@@ -95,8 +96,9 @@ module.exports = function (grunt) {
 		jshint: {
 			options: {
 				jshintrc: '.jshintrc',
-				reporter: require('jshint-stylish')
-			},
+				reporter: require('jshint-stylish'),
+                ignores:['<%= yeoman.dev %>/js/templates.js']
+            },
 			all: {
 				src: [
 					'Gruntfile.js',
@@ -105,7 +107,7 @@ module.exports = function (grunt) {
 			},
 			test: {
 				options: {
-					jshintrc: './.jshintrc'
+                    jshintrc: './test/.jshintrc'
 				},
 				src: ['test/spec/{,*/}*.js']
 			}
@@ -127,21 +129,12 @@ module.exports = function (grunt) {
 		},
 
 		// Automatically inject Bower components into the app
-		wiredep: {
-			dev: {
-				src: ['<%= yeoman.dev %>/index.html'],
-				ignorePath: new RegExp('^<%= yeoman.dev %>/|../'),
-				exclude: ['bower_components/modernizr/modernizr.js'],
-				fileTypes: {
-					html: {
-						replace: {
-							js: '<script src="../{{filePath}}"></script>',
-							css: '<link rel="stylesheet" href="../{{filePath}}" />'
-						}
-					}
-				}
-			}
-		},
+        wiredep: {
+            dev: {
+                src: ['<%= yeoman.dev %>/index.html'],
+                exclude: ['bower_components/modernizr/modernizr.js']
+            }
+        },
 
 		// Compiles Sass to CSS and generates necessary files if requested
 		sass: {
@@ -232,25 +225,23 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// ngmin tries to make the code safe for minification automatically by
-		// using the Angular long form for dependency injection. It doesn't work on
-		// things like resolve or inject so those have to be done manually.
-		ngmin: {
-			prod: {
-				files: [{
-					expand: true,
-					cwd: '<%= yeoman.dev %>/js',
-					src: '*.js',
-					dest: '<%= yeoman.prod %>/js'
-				}]
-			}
-		},
+        ngAnnotate: {
+            options: {
+                singleQuotes: true
+            },
+            app2: {
+                files: [{
+                    expand: true,
+                    src: ['<%= yeoman.dev %>/js/**/*.js']
+                }]
+            }
+        },
 
         //compiles angular templates into a single file
         ngtemplates: {
             app: {
                 cwd: '<%= yeoman.dev %>',
-                src: 'templates/**.html',
+                src: 'templates/**/*.html',
                 dest: '<%= yeoman.dev %>/js/templates.js',
                 options: {
                     module:'<%= appname %>',
@@ -275,7 +266,6 @@ module.exports = function (grunt) {
 						'*.{ico,png,txt}',
 						'*.html',
 						'css/*.css',
-						'templates/{,*/}*.html',
 						'assets/{,*/}*.{webp}'
 					]
 				}, 
@@ -343,7 +333,7 @@ module.exports = function (grunt) {
 		'useminPrepare',
 		'concurrent:prod',
 		'concat',
-		'ngmin',
+		'ngAnnotate',
 		'ngtemplates',
 		'copy',
 		'cssmin',

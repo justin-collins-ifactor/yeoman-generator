@@ -23,10 +23,10 @@
 	<!-- endbuild -->
 </head>
 
-<body ng-app="<%= appname %>">
+<body id="ng-app" role="main" ng-app="<%= appname %>">
 <div id="container">
 	<header></header>
-	<div ng-view></div>
+	<div ng-view class="controller" ng-controller="<%= appname %>Controller as main"></div>
 	<footer></footer>
 </div>
 <!-- build:js js/vendor.js -->

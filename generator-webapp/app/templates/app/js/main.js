@@ -1,10 +1,6 @@
-'use strict';
+angular.module('<%= appname %>', ['ngResource', 'ngRoute']);
 
-angular.module('<%= appname %>', [
-	'ngResource',
-	'ngRoute'
-])
-.config(function ($routeProvider) {
+function config($routeProvider) {
 	$routeProvider
 	.when('/', {
 		templateUrl: 'templates/home.html',
@@ -13,4 +9,14 @@ angular.module('<%= appname %>', [
 	.otherwise({
 		redirectTo: '/'
 	});
-});
+}
+config.$inject = ['$routeProvider'];
+
+function <%= appname %>Controller($scope) {
+
+}
+<%= appname %>Controller.$inject = ['$scope'];
+
+angular.module('<%= appname %>')
+.config(config)
+.controller('<%= appname %>Controller', <%= appname %>Controller);

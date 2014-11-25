@@ -1,30 +1,36 @@
-@import "resets";
 @import "../../bower_components/bourbon/dist/bourbon";
-@import "../../bower_components/neat/app/assets/stylesheets/neat";
-@import "mixins";
-@import "variables";
+//@import "../../bower_components/neat/app/assets/stylesheets/neat";
+
+@import "utils/mixins";
+@import "utils/resets";
+
+@import "colors";
 @import "typography";
 
 ////////////////////////////////////////////////////////////
 //		[GENERAL STYLES]
 ////////////////////////////////////////////////////////////
-body{background-color:#FFFFFF; color:$colorBase; font-size:$fontSize; line-height:$fontSize+2;}
+body{
+	margin:0;
+	padding:0;
+	background-color:#fff;
+	text-align:center;
+}
 
-#container{width:100%; height:100%; text-align:center;}
+#container{
+	@include size(100%);
 
-////////////////////////////////////////////////////////////
-//		[HEADER STYLES]
-////////////////////////////////////////////////////////////
-header{}
+	*{
+		@include box-sizing(border-box);
+	}
 
-////////////////////////////////////////////////////////////
-//		[BODY STYLES]
-////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////
-//		[FOOTER STYLES]
-////////////////////////////////////////////////////////////
-footer{color:black;}
+	a{
+		text-decoration:none;
+	}
+}
+//--------------------------------------------------
+//		[TEMPLATE STYLES]
+//--------------------------------------------------
+@import "templates/home";
 
 @import "responsive";

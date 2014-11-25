@@ -13,20 +13,25 @@
 	}
 }
 
-@mixin textFormat($size:$fontSize, $lineHeight:$fontSize+3, $color:$colorBase, $family:null, $weight:null, $transform:null){
-	font-size:$size;
-	line-height:$lineHeight;
-	color:$color;
+@mixin textFormat($size:$fontSize, $lineHeight:null, $color:null, $family:null, $weight:null, $transform:null){
+  font-size:$size;
 
-	@if $family != null {font-family:$family;}
-	@if $weight != null {font-weight:$weight;}
-	@if $transform != null {text-transform:$transform;}
+  @if $lineHeight == null{line-height:$size+2;}
+  @else {line-height:$lineHeight;}
+  
+
+  @if $color != null {color:$color;}
+  @if $family != null {font-family:$family;}
+  @if $weight != null {font-weight:$weight;}
+  @if $transform != null {text-transform:$transform;}
 }
 
 //--------------------------------------------------
 //	Cabin
 //--------------------------------------------------
 
-@include font-face(Cabin, 'cabin-regular', normal, normal);
+//@include font-face(Cabin, 'cabin-regular', normal, normal);
 
-$cabin: Cabin, sans-serif;
+//$cabin: Cabin, sans-serif;
+
+$fontSize:13px;

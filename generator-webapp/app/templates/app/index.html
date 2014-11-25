@@ -10,9 +10,9 @@
 	<meta name="description" content="" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-	
+
 	<!-- build:css css/vendor.css-->
 	<!-- bower:css -->
 	<!-- endbower -->
@@ -21,13 +21,20 @@
 	<!-- build:css css/main.css -->
 	<link rel="stylesheet" href="css/main.css" />
 	<!-- endbuild -->
+
+	<!-- build:js js/modernizr.js -->
+	<script src="../bower_components/modernizr/modernizr.js"></script>
+	<!-- endbuild -->
 </head>
 
-<body id="ng-app" role="main" ng-app="<%= appname %>">
-<div id="container">
-	<header></header>
-	<div ng-view class="controller" ng-controller="<%= appname %>Controller as main"></div>
-	<footer></footer>
+<body>
+<div id="ng-app" role="main" ng-app="<%= appname %>" ng-controller="<%= appname %>Controller as main">
+	<!--<a ui-sref="manage">manage</a>
+	<a ui-sref="super">super</a>
+	<a ui-sref="aprl({muniID:'bartertown'})">aprl</a>-->
+	<div id="container">
+		<div ui-view></div>
+	</div>
 </div>
 <!-- build:js js/vendor.js -->
 <!-- bower:js -->
@@ -37,7 +44,7 @@
 <!-- build:js js/main.js -->
 <script src="js/main.js"></script>
 <script src="js/templates.js"></script>
-<script src="js/controllers/home.js"></script>
+<script src="js/controllers/HomeCtrl.js"></script>
 <!-- endbuild -->
 </body>
 </html>

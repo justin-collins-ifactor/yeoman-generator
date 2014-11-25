@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.dev %>/templates/**/*.html'],
 				tasks: ['ngtemplates'],
 				options: {
-					livereload: '<%= connect.options.livereload %>'
+				//	livereload: '<%= connect.options.livereload %>'
 				}
 			},
 			sass: {
@@ -177,7 +177,7 @@ module.exports = function (grunt) {
 				assetsDirs: ['<%= yeoman.prod %>','<%= yeoman.prod %>/assets']
 			}
 		},
- 
+
 		uglify: {
 			options: {
 				report: 'min',
@@ -268,7 +268,7 @@ module.exports = function (grunt) {
 						'css/*.css',
 						'assets/{,*/}*.{webp}'
 					]
-				}, 
+				},
 				{
 					expand: true,
 					cwd: '<%= yeoman.dev %>/assets/images',

@@ -1,5 +1,5 @@
 //--------------------------------------------------
-//	Custom Mixins
+//  Custom Mixins
 //--------------------------------------------------
 
 @mixin clearfix {
@@ -47,25 +47,25 @@
 }
 
 
-@mixin inlinelist($itemFloatDirection:left, $floatContainer:false, $floatContainerDirection:left) {
-  @if $floatContainer == true
+@mixin inlinelist($itemFloatDirection:left, $floatContainerDirection:null) {
+  @if $floatContainerDirection != true
   {
-    @include float($floatContainerDirection);
+    float:$floatContainerDirection;
   } @else {
     @include clearfix;
   }
   @include unlistify;
 
   > li {
-    @include float($itemFloatDirection);
+    float:$itemFloatDirection;
   }
 }
 
 
-$position-default-top:			null !default;
-$position-default-right:		null !default;
-$position-default-bottom:		null !default;
-$position-default-left:			null !default;
+$position-default-top:      null !default;
+$position-default-right:    null !default;
+$position-default-bottom:   null !default;
+$position-default-left:     null !default;
 
 @mixin _position($type,
 $top: $position-default-top,
@@ -132,14 +132,4 @@ $left: $position-default-left) {
     font-style: $fontStyle;
     font-weight: $fontWeight;
   }
-}
-
-@mixin textFormat($size:$fontSize, $lineHeight:$fontSize+3, $color:$textColor, $family:null, $weight:null, $transform:null){
-  font-size:$size;
-  line-height:$lineHeight;
-  color:$color;
-
-  @if $family != null {font-family:$family;}
-  @if $weight != null {font-weight:$weight;}
-  @if $transform != null {text-transform:$transform;}
 }

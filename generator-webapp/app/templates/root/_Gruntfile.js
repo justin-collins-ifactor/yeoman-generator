@@ -55,8 +55,7 @@ module.exports = function (grunt) {
 					livereload: '<%= connect.options.livereload %>'
 				},
 				files: [
-                    '<%= yeoman.dev %>/index.html',
-					'<%= yeoman.dev %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    '<%= yeoman.dev %>/index.html'
 				]
 			}
 		},
@@ -185,28 +184,6 @@ module.exports = function (grunt) {
 			}
 		},
 
-		imagemin: {
-			prod: {
-				files: [{
-					expand: true,
-					cwd: '<%= yeoman.dev %>/assets/images',
-					src: '{,*/}*.{png,jpg,jpeg,gif}',
-					dest: '<%= yeoman.prod %>/assets/images'
-				}]
-			}
-		},
-
-		svgmin: {
-			prod: {
-				files: [{
-					expand: true,
-					cwd: '<%= yeoman.dev %>/assets/images',
-					src: '{,*/}*.svg',
-					dest: '<%= yeoman.prod %>/assets/images'
-				}]
-			}
-		},
-
 		htmlmin: {
 			prod: {
 				options: {
@@ -278,21 +255,6 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// Run some tasks in parallel to speed up the build process
-		concurrent: {
-			server: [
-				'sass'
-			],
-			test: [
-				'sass'
-			],
-			prod: [
-				'sass',
-				'imagemin',
-				'svgmin'
-			]
-		},
-
 		// Test settings
 		karma: {
 			unit: {
@@ -311,7 +273,6 @@ module.exports = function (grunt) {
 			'clean:server',
 			'ngtemplates',
 			'wiredep',
-			'concurrent:server',
 			'connect:livereload',
 			'watch'
 		]);
@@ -321,7 +282,6 @@ module.exports = function (grunt) {
 		'clean:server',
 		'ngtemplates',
 		'wiredep',
-		'concurrent:test',
 		'clean:server',
 		'karma'
 	]);
@@ -331,7 +291,6 @@ module.exports = function (grunt) {
 		'wiredep',
 		'sass',
 		'useminPrepare',
-		'concurrent:prod',
 		'concat',
 		'ngAnnotate',
 		'ngtemplates',

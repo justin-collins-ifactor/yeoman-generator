@@ -20,7 +20,7 @@
 		"time-grunt": "^0.3.1",
 		"jshint-stylish": "^0.2.0",
 		"grunt-newer": "^0.7.0",
-		"grunt-sass": "^0.12.1",
+		"grunt-sass": "^0.18.0",
 		"grunt-angular-templates": "^0.5.6",
 		"karma": "^0.12.17",
 		"grunt-karma": "^0.8.3",

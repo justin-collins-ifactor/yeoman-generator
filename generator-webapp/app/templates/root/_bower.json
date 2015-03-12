@@ -9,8 +9,8 @@
     "modernizr": "~2.8.2"
   },
   "devDependencies": {
-    "bourbon": "~3.2.1",
-    "neat": "~1.5.1",
+    "bourbon": "~4.2.1",
+    "neat": "~1.7.1",
     "angular-mocks": "~1.2.20"
   },
   "appPath": "dev"

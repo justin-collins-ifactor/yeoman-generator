@@ -23,7 +23,7 @@ module.exports = function (grunt) {
 				tasks: ['wiredep']
 			},
 			js: {
-                files: ['<%= yeoman.dev %>/js/**/*.js'],
+				files: ['<%= yeoman.dev %>/**/*.js'],
 				tasks: ['newer:jshint:all'],
 				options: {
 					livereload: '<%= connect.options.livereload %>'
@@ -33,29 +33,17 @@ module.exports = function (grunt) {
 				files: ['test/spec/{,*/}*.js'],
 				tasks: ['newer:jshint:test', 'karma']
 			},
-			ngtemplates:{
-                files: ['<%= yeoman.dev %>/templates/**/*.html'],
-				tasks: ['ngtemplates'],
-				options: {
-				//	livereload: '<%= connect.options.livereload %>'
-				}
-			},
 			sass: {
-                files: ['<%= yeoman.dev %>/sass/**/*.{scss,sass}'],
-				tasks: ['sass'],
-				options: {
-					livereload: '<%= connect.options.livereload %>'
-				}
-			},
-			gruntfile: {
-				files: ['Gruntfile.js']
+				files: ['<%= yeoman.dev %>/**/*.{scss,sass}'],
+				tasks: ['sass']
 			},
 			livereload: {
 				options: {
 					livereload: '<%= connect.options.livereload %>'
 				},
 				files: [
-                    '<%= yeoman.dev %>/index.html'
+					'<%= yeoman.dev %>/**/*.html',
+					'<%= yeoman.dev %>/css/*.css',
 				]
 			}
 		},
@@ -96,17 +84,17 @@ module.exports = function (grunt) {
 			options: {
 				jshintrc: '.jshintrc',
 				reporter: require('jshint-stylish'),
-                ignores:['<%= yeoman.dev %>/js/templates.js']
-            },
+				ignores:['<%= yeoman.dev %>/js/templates.js']
+			},
 			all: {
 				src: [
 					'Gruntfile.js',
-					'<%= yeoman.dev %>/js/{,*/}*.js'
+					'<%= yeoman.dev %>/{,*/}*.js'
 				]
 			},
 			test: {
 				options: {
-                    jshintrc: './test/.jshintrc'
+					jshintrc: './test/.jshintrc'
 				},
 				src: ['test/spec/{,*/}*.js']
 			}
@@ -118,7 +106,6 @@ module.exports = function (grunt) {
 				files: [{
 					dot: true,
 					src: [
-
 						'<%= yeoman.prod %>/{,*/}*',
 						'!<%= yeoman.prod %>/.git*'
 					]
@@ -128,22 +115,22 @@ module.exports = function (grunt) {
 		},
 
 		// Automatically inject Bower components into the app
-        wiredep: {
-            dev: {
-                src: ['<%= yeoman.dev %>/index.html'],
-                exclude: ['bower_components/modernizr/modernizr.js']
-            }
-        },
+		wiredep: {
+			dev: {
+				src: ['<%= yeoman.dev %>/index.html'],
+				exclude: ['bower_components/modernizr/modernizr.js']
+			}
+		},
 
 		// Compiles Sass to CSS and generates necessary files if requested
 		sass: {
 			prod:{
 				options:{
 					outputStyle: 'compressed',
-	                sourceComments: 'none'
+					sourceComments: 'none'
 				},
 				files: {
-					'<%= yeoman.dev %>/css/main.css' : '<%= yeoman.dev %>/sass/main.scss'
+					'<%= yeoman.dev %>/css/<%= appname %>.css' : '<%= yeoman.dev %>/sass/main.scss'
 				}
 			}
 		},
@@ -202,34 +189,35 @@ module.exports = function (grunt) {
 			}
 		},
 
-        ngAnnotate: {
-            options: {
-                singleQuotes: true
-            },
-            app2: {
-                files: [{
-                    expand: true,
-                    src: ['<%= yeoman.dev %>/js/**/*.js']
-                }]
-            }
-        },
+		ngAnnotate: {
+			options: {
+				singleQuotes: true
+			},
+			app2: {
+				files: [{
+					expand: true,
+					src: ['<%= yeoman.dev %>/**/*.js']
+				}]
+			}
+		},
 
-        //compiles angular templates into a single file
-        ngtemplates: {
-            app: {
-                cwd: '<%= yeoman.dev %>',
-                src: 'templates/**/*.html',
-                dest: '<%= yeoman.dev %>/js/templates.js',
-                options: {
-                    module:'<%= appname %>',
-                    htmlmin: {
-                        collapseWhitespace: true,
-                        collapseBooleanAttributes: true,
-                        removeCommentsFromCDATA: true
-                    }
-                }
-            }
-        },
+		//compiles angular templates into a single file
+		ngtemplates: {
+			app: {
+				cwd: '<%= yeoman.dev %>',
+				src: '*/**/*.html',
+				dest: '.tmp/templates.js',
+				options: {
+					module:'<%= appname %>',
+					htmlmin: {
+						collapseWhitespace: true,
+						collapseBooleanAttributes: true,
+						removeCommentsFromCDATA: true
+					},
+					usemin: 'js/<%= appname %>.js'
+				}
+			}
+		},
 
 		// Copies remaining files to places other tasks can use
 		copy: {
@@ -245,12 +233,6 @@ module.exports = function (grunt) {
 						'css/*.css',
 						'assets/{,*/}*.{webp}'
 					]
-				},
-				{
-					expand: true,
-					cwd: '<%= yeoman.dev %>/assets/images',
-					dest: '<%= yeoman.prod %>/assets/images',
-					src: ['<%= yeoman.dev %>/assets/generated/*']
 				}]
 			}
 		},
@@ -271,7 +253,6 @@ module.exports = function (grunt) {
 
 		grunt.task.run([
 			'clean:server',
-			'ngtemplates',
 			'wiredep',
 			'connect:livereload',
 			'watch'
@@ -280,7 +261,6 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('test', [
 		'clean:server',
-		'ngtemplates',
 		'wiredep',
 		'clean:server',
 		'karma'
@@ -290,8 +270,8 @@ module.exports = function (grunt) {
 		'clean:prod',
 		'wiredep',
 		'sass',
-		'ngtemplates',
 		'useminPrepare',
+		'ngtemplates',
 		'concat',
 		'ngAnnotate',
 		'copy',

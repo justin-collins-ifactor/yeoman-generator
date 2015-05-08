@@ -2,26 +2,26 @@ angular.module('<%= appname %>', ['ngResource', 'ui.router']);
 
 function config($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider
-	.when('', '/home');
+	.when('', '/sample');
 
 	$stateProvider
-	.state('home', {
-		url: '/home',
-		templateUrl: 'templates/home.tpl.html',
-		controller: 'HomeCtrl',
-		controllerAs: 'HomeCtrl'
-		/*resolve:{
-			loadJocs: ['JocService', function(JocService){
-				return JocService.getData();
+	.state('sample', {
+		url: '/sample',
+		templateUrl: 'components/sample/SampleView.tpl.html',
+		controller: 'SampleCtrl',
+		controllerAs: 'SampleCtrl',
+		resolve:{
+			loadJocs: ['SampleService', function(SampleService){
+				return SampleService.getData();
 			}]
-		}*/
+		}
 	});
 }
 config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-function <%= appname %>Controller($scope) {}
-<%= appname %>Controller.$inject = ['$scope'];
+function <%= appname %>Ctrl($scope) {}
+<%= appname %>Ctrl.$inject = ['$scope'];
 
 angular.module('<%= appname %>')
 .config(config)
-.controller('<%= appname %>Controller', <%= appname %>Controller);
+.controller('<%= appname %>Ctrl', <%= appname %>Ctrl);

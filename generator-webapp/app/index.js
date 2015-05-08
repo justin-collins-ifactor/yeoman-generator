@@ -67,7 +67,7 @@ var WebappGenerator = yeoman.generators.Base.extend({
 
 		//similar to template, but replaces only the appname
 		var indexFile = this.readFileAsString(__dirname+'/templates/root/_Gruntfile.js');
-		indexFile = indexFile.replace('<%= appname %>', this.appname);
+		indexFile = indexFile.replace(new RegExp('<%= appname %>', 'g'), this.appname);
 		this.write('Gruntfile.js',indexFile);
 	}
 });

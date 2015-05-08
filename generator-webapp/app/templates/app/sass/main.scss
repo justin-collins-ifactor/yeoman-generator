@@ -29,8 +29,6 @@ body{
 	}
 }
 //--------------------------------------------------
-//		[TEMPLATE STYLES]
+//		[COMPONENT STYLES]
 //--------------------------------------------------
-@import "templates/home";
-
-@import "responsive";
+@import "../components/sample/_SampleStyles";

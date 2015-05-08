@@ -18,8 +18,8 @@
 	<!-- endbower -->
 	<!-- endbuild -->
 
-	<!-- build:css css/main.css -->
-	<link rel="stylesheet" href="css/main.css" />
+	<!-- build:css css/<%= appname %>.css -->
+	<link rel="stylesheet" href="css/<%= appname %>.css" />
 	<!-- endbuild -->
 
 	<!-- build:js js/modernizr.js -->
@@ -28,10 +28,7 @@
 </head>
 
 <body>
-<div id="ng-app" role="main" ng-app="<%= appname %>" ng-controller="<%= appname %>Controller as main">
-	<!--<a ui-sref="manage">manage</a>
-	<a ui-sref="super">super</a>
-	<a ui-sref="aprl({muniID:'bartertown'})">aprl</a>-->
+<div id="ng-app" role="main" ng-app="<%= appname %>" ng-controller="<%= appname %>Ctrl as main">
 	<div id="container">
 		<div ui-view></div>
 	</div>
@@ -41,10 +38,10 @@
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:js js/main.js -->
+<!-- build:js js/<%= appname %>.js -->
 <script src="js/main.js"></script>
-<script src="js/templates.js"></script>
-<script src="js/controllers/HomeCtrl.js"></script>
+<script src="components/sample/SampleCtrl.js"></script>
+<script src="components/sample/SampleService.js"></script>
 <!-- endbuild -->
 </body>
 </html>

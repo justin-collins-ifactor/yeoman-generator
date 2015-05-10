@@ -11,7 +11,7 @@ function config($stateProvider, $urlRouterProvider) {
 		controller: 'SampleCtrl',
 		controllerAs: 'SampleCtrl',
 		resolve:{
-			loadJocs: ['SampleService', function(SampleService){
+			SampleDataResolver: ['SampleService', function(SampleService){
 				return SampleService.getData();
 			}]
 		}

@@ -9,6 +9,7 @@ function SampleService($resource){
 
 	var dataLoaded = function(result){
 		data = result;
+		return result;
 	};
 
 	var getData = function(){

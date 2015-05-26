@@ -261,6 +261,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('test', [
 		'clean:server',
+		'sass',
 		'wiredep',
 		'clean:server',
 		'karma'

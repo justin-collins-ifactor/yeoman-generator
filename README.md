@@ -14,7 +14,7 @@
 
 3. Download webapp generator somewhere out of the way
   ```bash
-  git clone git@github.com:justin-collins/yeoman-generator.git
+  git clone git@github.com:justin-collins-ifactor/yeoman-generator.git
   ```
 
 4. Navigate to the generator-webapp folder within the repo. 

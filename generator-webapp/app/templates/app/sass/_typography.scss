@@ -13,12 +13,12 @@
 	}
 }
 
-@mixin textFormat($size:$fontSize, $lineHeight:null, $color:null, $family:null, $weight:null, $transform:null){
+@mixin text-format($size:$fontSize, $lineHeight:null, $color:null, $family:null, $weight:null, $transform:null){
   font-size:$size;
 
   @if $lineHeight == null{line-height:$size+2;}
   @else {line-height:$lineHeight;}
-  
+
 
   @if $color != null {color:$color;}
   @if $family != null {font-family:$family;}

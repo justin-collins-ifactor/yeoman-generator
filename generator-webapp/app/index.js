@@ -44,11 +44,13 @@ var WebappGenerator = yeoman.generators.Base.extend({
 	app: function () {
 		this.directory('app', 'dev');
 
+		this.mkdir('dev/shared');
+		this.mkdir('dev/shared/constants');
+		this.mkdir('dev/shared/directives');
 		this.mkdir('dev/assets');
 		this.mkdir('dev/assets/fonts');
 		this.mkdir('dev/assets/images');
 		this.mkdir('dev/assets/images/_builders');
-		this.mkdir('dev/assets/images/global');
 	},
 
 	projectfiles: function () {

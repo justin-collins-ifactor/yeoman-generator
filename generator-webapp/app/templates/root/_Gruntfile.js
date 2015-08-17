@@ -43,7 +43,7 @@ module.exports = function (grunt) {
 				},
 				files: [
 					'<%= yeoman.dev %>/**/*.html',
-					'<%= yeoman.dev %>/css/*.css',
+					'<%= yeoman.dev %>/css/*.css'
 				]
 			}
 		},
@@ -231,7 +231,7 @@ module.exports = function (grunt) {
 						'*.{ico,png,txt}',
 						'*.html',
 						'css/*.css',
-						'assets/{,*/}*.{webp}'
+						'assets/**'
 					]
 				}]
 			}
@@ -253,6 +253,7 @@ module.exports = function (grunt) {
 
 		grunt.task.run([
 			'clean:server',
+			'sass',
 			'wiredep',
 			'connect:livereload',
 			'watch'
@@ -261,7 +262,6 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('test', [
 		'clean:server',
-		'sass',
 		'wiredep',
 		'clean:server',
 		'karma'

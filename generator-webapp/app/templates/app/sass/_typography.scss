@@ -1,3 +1,5 @@
+$fontSize:15px;
+
 ////////////////////////////////////////////////////////////
 //		[@FONT-FACE]
 ////////////////////////////////////////////////////////////
@@ -14,24 +16,29 @@
 }
 
 @mixin text-format($size:$fontSize, $lineHeight:null, $color:null, $family:null, $weight:null, $transform:null){
-  font-size:$size;
+	@include font-size($size);
 
-  @if $lineHeight == null{line-height:$size+2;}
-  @else {line-height:$lineHeight;}
+	@if $lineHeight == null{line-height:calculateRem($size);}
+	@else {line-height:calculateRem($lineHeight);}
 
 
-  @if $color != null {color:$color;}
-  @if $family != null {font-family:$family;}
-  @if $weight != null {font-weight:$weight;}
-  @if $transform != null {text-transform:$transform;}
+	@if $color != null {color:$color;}
+	@if $family != null {font-family:$family;}
+	@if $weight != null {font-weight:$weight;}
+	@if $transform != null {text-transform:$transform;}
+}
+
+@mixin font-size($size) {
+	font-size: $size;
+	font-size: calculateRem($size);
+}
+
+@function calculateRem($size) {
+	$remSize: $size / $fontSize;
+	@return $remSize * 1rem;
 }
 
 //--------------------------------------------------
-//	Cabin
+//	roboto
 //--------------------------------------------------
-
-//@include font-face(Cabin, 'cabin-regular', normal, normal);
-
-//$cabin: Cabin, sans-serif;
-
-$fontSize:13px;
+$roboto: 'roboto', sans-serif;

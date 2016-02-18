@@ -38,6 +38,14 @@
 <script src="js/main.js"></script>
 <script src="components/sample/SampleCtrl.js"></script>
 <script src="components/sample/SampleService.js"></script>
+<script src="js/utils/AppConfig.js"></script>
 <!-- endbuild -->
+<script>
+angular.module('<%= appname %>').config(function (AppConfigProvider) {
+	AppConfigProvider.set({
+		serviceURLBase:'http://localhost:8080'
+	});
+});
+</script>
 </body>
 </html>

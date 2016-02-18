@@ -1,7 +1,7 @@
-function SampleService($resource){
+function SampleService($resource, AppConfig){
 	var data;
 
-	var rest = $resource('/path/to/json');
+	var rest = $resource(AppConfig.serviceURLBase+'/path/to/json');
 
 	var loadData = function(){
 		//data = rest.query().$promise.then(dataLoaded);
@@ -24,6 +24,6 @@ function SampleService($resource){
 	};
 }
 
-SampleService.$inject = ['$resource'];
+SampleService.$inject = ['$resource', 'AppConfig'];
 
 angular.module('<%= appname %>').factory('SampleService', SampleService);

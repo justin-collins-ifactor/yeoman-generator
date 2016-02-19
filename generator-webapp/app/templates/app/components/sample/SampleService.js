@@ -1,4 +1,4 @@
-function SampleService($resource, AppConfig){
+function <%= componentNameCap %>Service($resource, AppConfig){
 	var data;
 
 	var rest = $resource(AppConfig.serviceURLBase+'/path/to/json');
@@ -24,6 +24,6 @@ function SampleService($resource, AppConfig){
 	};
 }
 
-SampleService.$inject = ['$resource', 'AppConfig'];
+<%= componentNameCap %>Service.$inject = ['$resource', 'AppConfig'];
 
-angular.module('<%= appname %>').factory('SampleService', SampleService);
+angular.module('<%= appname %>').factory('<%= componentNameCap %>Service', <%= componentNameCap %>Service);

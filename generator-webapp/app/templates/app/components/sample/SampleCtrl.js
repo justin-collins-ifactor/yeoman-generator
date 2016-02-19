@@ -1,7 +1,7 @@
-function SampleCtrl(SampleDataResolver) {
+function <%= componentNameCap %>Ctrl(<%= componentNameCap %>DataResolver) {
 	var scope = this;
-	scope.data = SampleDataResolver;
+	scope.data = <%= componentNameCap %>DataResolver;
 }
-SampleCtrl.$inject = ['SampleDataResolver'];
+<%= componentNameCap %>Ctrl.$inject = ['<%= componentNameCap %>DataResolver'];
 
-angular.module('<%= appname %>').controller('SampleCtrl', SampleCtrl);
+angular.module('<%= appname %>').controller('<%= componentNameCap %>Ctrl', <%= componentNameCap %>Ctrl);

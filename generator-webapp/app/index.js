@@ -13,7 +13,7 @@ var WebappGenerator = yeoman.generators.Base.extend({
 			this.installDependencies({
 				skipInstall: this.options['skip-install'],
 				callback: function () {
-					this.spawnCommand('grunt', ['build']);
+					//this.spawnCommand('grunt', ['build']);
 				}.bind(this)
 			});
 		});
@@ -22,7 +22,7 @@ var WebappGenerator = yeoman.generators.Base.extend({
 	welcome: function(){
 		if (!this.options['skip-welcome-message']) {
 			this.log(yosay());
-			this.log(chalk.magenta('Custom webapp installer. \n'));
+			this.log(chalk.magenta('KUBRA Front End Team webapp bootstrapper. \n'));
 		}
 	},
 
@@ -32,17 +32,24 @@ var WebappGenerator = yeoman.generators.Base.extend({
 		var prompts = [{
             name: 'appname',
             message: 'What is your app\'s name?'
+        },{
+            name: 'componentName',
+            message: 'What is your first component name?'
         }];
 
 		this.prompt(prompts, function (props) {
 			this.appname = this._.camelize(this._.slugify(this._.humanize(props.appname)));
+			this.componentName = this._.camelize(this._.slugify(this._.humanize(props.componentName)));
+			this.componentNameCap = this._.capitalize(this.componentName);
 
 			done();
 		}.bind(this));
 	},
 
 	app: function () {
-		this.directory('app', 'dev');
+		this.directory('app/js', 'dev/js');
+		this.directory('app/sass', 'dev/sass');
+		this.copy('app/index.html', 'dev/index.html');
 
 		this.mkdir('dev/shared');
 		this.mkdir('dev/shared/constants');
@@ -51,6 +58,12 @@ var WebappGenerator = yeoman.generators.Base.extend({
 		this.mkdir('dev/assets/fonts');
 		this.mkdir('dev/assets/images');
 		this.mkdir('dev/assets/images/_builders');
+
+		this.mkdir('dev/components/'+this.componentName);
+		this.copy('app/components/sample/SampleCtrl.js', 'dev/components/'+this.componentName+'/'+this.componentNameCap+'Ctrl.js');
+		this.copy('app/components/sample/SampleService.js', 'dev/components/'+this.componentName+'/'+this.componentNameCap+'Service.js');
+		this.copy('app/components/sample/_SampleStyles.scss', 'dev/components/'+this.componentName+'/_'+this.componentNameCap+'Styles.scss');
+		this.copy('app/components/sample/SampleView.tpl.html', 'dev/components/'+this.componentName+'/'+this.componentNameCap+'View.tpl.html');
 	},
 
 	projectfiles: function () {

@@ -2,17 +2,17 @@ angular.module('<%= appname %>', ['ngResource', 'ui.router']);
 
 function config($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider
-	.when('', '/sample');
+	.when('', '/<%= componentName %>');
 
 	$stateProvider
-	.state('sample', {
-		url: '/sample',
-		templateUrl: 'components/sample/SampleView.tpl.html',
-		controller: 'SampleCtrl',
-		controllerAs: 'SampleCtrl',
+	.state('<%= componentName %>', {
+		url: '/<%= componentName %>',
+		templateUrl: 'components/<%= componentName %>/<%= componentNameCap %>View.tpl.html',
+		controller: '<%= componentNameCap %>Ctrl',
+		controllerAs: '<%= componentNameCap %>Ctrl',
 		resolve:{
-			SampleDataResolver: ['SampleService', function(SampleService){
-				return SampleService.getData();
+			<%= componentNameCap %>DataResolver: ['<%= componentNameCap %>Service', function(<%= componentNameCap %>Service){
+				return <%= componentNameCap %>Service.getData();
 			}]
 		}
 	});

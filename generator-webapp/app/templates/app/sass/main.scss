@@ -31,4 +31,4 @@ body{
 //--------------------------------------------------
 //		[COMPONENT STYLES]
 //--------------------------------------------------
-@import "../components/sample/_SampleStyles";
+@import "../components/<%= componentName %>/_<%= componentNameCap %>Styles";

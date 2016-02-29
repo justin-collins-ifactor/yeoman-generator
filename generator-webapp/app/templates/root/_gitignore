@@ -2,6 +2,7 @@ node_modules/
 temp/
 bower_components/
 prod/
+dev/css/
 .DS_Store
 .sass-cache
 .tmp

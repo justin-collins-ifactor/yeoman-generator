@@ -126,8 +126,7 @@ module.exports = function (grunt) {
 		sass: {
 			prod:{
 				options:{
-					outputStyle: 'compressed',
-					sourceComments: 'none'
+					sourceMap: true
 				},
 				files: {
 					'<%= yeoman.dev %>/css/<%= appname %>.css' : '<%= yeoman.dev %>/sass/main.scss'

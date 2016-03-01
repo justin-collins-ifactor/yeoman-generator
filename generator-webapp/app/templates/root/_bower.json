@@ -2,14 +2,14 @@
   "name": "<%= appname %>",
   "version": "0.0.0",
   "dependencies": {
-		"angular": "~1.4.8",
-		"angular-ui-router": "~0.2.15",
-		"angular-resource": "~1.4.8"
+		"angular": "~1.5.0",
+		"angular-ui-router": "~0.2.18",
+		"angular-resource": "~1.5.0"
   },
   "devDependencies": {
 		"bourbon": "~4.2.6",
 		"neat": "~1.7.2",
-		"angular-mocks": "~1.4.8"
+		"angular-mocks": "~1.5.0"
   },
   "appPath": "dev"
 }

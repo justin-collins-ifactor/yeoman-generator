@@ -12,8 +12,8 @@ function <%= componentNameCap %>Service($resource, AppConfig){
 		return result;
 	};
 
-	var getData = function(){
-		if(!data){
+	var getData = function(ignoreCache){
+		if(!data || ignoreCache){
 			loadData();
 		}
 		return data;
